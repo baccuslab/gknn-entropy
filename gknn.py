@@ -4,7 +4,7 @@ authors: Niru Maheswaranathan and Lane McIntosh
 04:16 PM Apr 7, 2014
 """
 
-def estentropy(data, ball, k):
+def entropy(data, ball, k):
     """
     Estimates the entropy of the given data using the k-nearest neighbors method
 
