@@ -24,6 +24,14 @@ def entropy(data, ball, k):
         How many nearest-neighbors to use when computing radii. Must be at least 1.
 
     """
+    
+    (n,p) = data.shape
+    b     = getball(ball)
+    V     = volume(radius,ball=b)
+    
+    
+    H = sum([log(vol_i) for vol_i in V])/float(n) + log(n) - L(k - 1) + 0.577215665
+    
     pass
 
 def volume(radii, ball):
