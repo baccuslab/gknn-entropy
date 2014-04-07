@@ -14,7 +14,11 @@ def estentropy(data, ball, k):
         An (n by p) matrix containing n samples of p-dimensional data
 
     ball (string):
-        Which ball (e.g. l1, euclidean, etc.) to use when computing the volume
+        Which ball (e.g. l1, euclidean, etc.) to use when computing the volume.
+        Acceptable strings include:
+            'l1'   : l1 or Manhattan distance
+            'l2'   : l2 or Euclidean distance; default
+            'linf' : l-infinity or Chebyshev distance
 
     k (integer):
         How many nearest-neighbors to use when computing radii. Must be at least 1.
