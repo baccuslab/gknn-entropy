@@ -54,5 +54,39 @@ def volume(radii, ball):
     """
     pass
 
+def getball(string):
+    """
+    Get index associated with a corresponding 'ball'
+
+    input
+    -----
+    string:
+        A given name of a 'ball' (e.g. euclidean, l1, l2, etc.)
+
+    output
+    ------
+    index:
+        An index (integer) associated with that ball:
+        0: Chebyshev (l_inf) ball
+        1: Manhattan (l1) ball
+        2: Euclidean (l2) ball
+
+    """
+
+    # Euclidean ball
+    if string.upper() == 'L2' or string.upper() == 'EUCLIDEAN':
+        return 2
+
+    # l1 ball
+    elif string.upper() == 'L1' or string.upper() == 'MANHATTAN' or string.upper() == 'TAXICAB':
+        return 1
+
+    elif string.upper() == 'LINF' or string.upper() == 'CHEBYSHEV':
+        return 0
+
+    # ball not found
+    else:
+        raise ValueError('Could not recognize the ' + string + ' ball.')
+
 if __name__=="__main__":
     pass
