@@ -3,6 +3,8 @@ Generalized k-nearest neighbor entropy estimation
 authors: Niru Maheswaranathan and Lane McIntosh
 04:16 PM Apr 7, 2014
 """
+import numpy as np
+from math import gamma
 
 def entropy(data, ball, k):
     """
@@ -26,7 +28,7 @@ def entropy(data, ball, k):
     """
     pass
 
-def volume(radii, ball):
+def volume(radii, ball, dimension):
     """
     Computes the volume of the given ball with given radius
 
@@ -38,13 +40,18 @@ def volume(radii, ball):
     ball (string):
         Which ball (e.g. l1, euclidean, etc.) to use when computing the volume
 
+    dimension (integer):
+        Dimensionality of the space in which to compute the volume
+
     output
     ------
     volume (nd-array):
         A set of computed volumes, one for each given radius
 
     """
-    pass
+    p = float(dimension)
+    b = getball(ball)
+    return (2*gamma(1/b + 1)*radii)**p / gamma(p/b + 1)
 
 def getball(string):
     """
@@ -59,9 +66,9 @@ def getball(string):
     ------
     index:
         An index (integer) associated with that ball:
-        0: Chebyshev (l_inf) ball
         1: Manhattan (l1) ball
         2: Euclidean (l2) ball
+        inf: Chebyshev (l_inf) ball
 
     """
 
@@ -74,7 +81,7 @@ def getball(string):
         return 1
 
     elif string.upper() == 'LINF' or string.upper() == 'CHEBYSHEV':
-        return 0
+        return float('inf')
 
     # ball not found
     else:
