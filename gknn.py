@@ -5,6 +5,7 @@ authors: Niru Maheswaranathan and Lane McIntosh
 """
 import numpy as np
 from math import gamma
+from sklearn.neighbors import DistanceMetric
 
 def entropy(data, ball, k):
     """
@@ -27,14 +28,25 @@ def entropy(data, ball, k):
 
     """
     
-    (n,p) = data.shape
-    b     = getball(ball)
-    V     = volume(radius,ball=b)
+    # Get number of samples and dimensionality
+    (n,p)  = data.shape
     
+    # Determine radii and volumes for a given metric space
+    metric = getball(ball)
+    if metric == 1:
+        m = 'manhattan'
+    elif metric == 2:
+        m = 'euclidean'
+    elif metric == inf:
+        m = 'chebyshev'
+        
+    dist  = DistanceMetric.get_metric(m)
+    D_mat = dist.pairwise(data)
+    D_mat.sort(axis=1)
+    radii = D_mat[:,k]
+    Vs    = volume(radii, ball=metric, dimension=p)
     
-    H = sum([log(vol_i) for vol_i in V])/float(n) + log(n) - L(k - 1) + 0.577215665
-    
-    pass
+    return sum([log(vol) for vol in Vs])/float(n) + log(n) - L(k - 1) + 0.577215665
 
 def volume(radii, ball, dimension):
     """
