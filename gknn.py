@@ -46,7 +46,7 @@ def entropy(data, ball='euclidean', k=1):
     radii = D_mat[:,k]
     Vs    = volume(radii, ball=str(metric), dimension=p)
     
-    return sum([log(vol) for vol in Vs])/float(n) + log(n) - L(k - 1) + 0.577215665
+    return sum([np.log(vol) for vol in Vs])/float(n) + np.log(n) - L(k - 1) + 0.577215665
 
 def volume(radii, ball, dimension):
     """
@@ -106,6 +106,14 @@ def getball(string):
     # ball not found
     else:
         raise ValueError('Could not recognize the ' + string + ' ball.')
+
+def L(k):
+    if k == 0:
+        return 0
+    elif k > 0:
+        return sum([1/float(i) for i in xrange(1,k+1)])
+
+
 
 if __name__=="__main__":
     pass
