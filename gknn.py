@@ -7,7 +7,7 @@ import numpy as np
 from math import gamma
 from sklearn.neighbors import DistanceMetric
 
-def entropy(data, ball='euclidean', k=1):
+def entropy(data, ball='euclidean', k=1, units='nats'):
     """
     Estimates the entropy of the given data using the k-nearest neighbors method
 
@@ -46,7 +46,10 @@ def entropy(data, ball='euclidean', k=1):
     radii = D_mat[:,k]
     Vs    = volume(radii, ball=str(metric), dimension=p)
     
-    return sum([np.log(vol) for vol in Vs])/float(n) + np.log(n) - L(k - 1) + 0.577215665
+    if units.lower() == 'nats':
+        return sum([np.log(vol) for vol in Vs])/float(n) + np.log(n) - L(k - 1) + 0.577215665
+    if units.lower() == 'bits':
+        return sum([np.log2(vol) for vol in Vs])/float(n) + np.log2(n) - L(k - 1) + 0.577215665
 
 def volume(radii, ball, dimension):
     """
