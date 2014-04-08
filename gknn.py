@@ -44,7 +44,7 @@ def entropy(data, ball='euclidean', k=1):
     D_mat = dist.pairwise(data)
     D_mat.sort(axis=1)
     radii = D_mat[:,k]
-    Vs    = volume(radii, ball=metric, dimension=p)
+    Vs    = volume(radii, ball=str(metric), dimension=p)
     
     return sum([log(vol) for vol in Vs])/float(n) + log(n) - L(k - 1) + 0.577215665
 
