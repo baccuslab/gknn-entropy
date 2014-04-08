@@ -7,7 +7,7 @@ import numpy as np
 from math import gamma
 from sklearn.neighbors import DistanceMetric
 
-def entropy(data, ball, k):
+def entropy(data, ball='euclidean', k=1):
     """
     Estimates the entropy of the given data using the k-nearest neighbors method
 
