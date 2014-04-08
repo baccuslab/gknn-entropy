@@ -26,6 +26,12 @@ def entropy(data, ball='euclidean', k=1, units='nats'):
     k (integer):
         How many nearest-neighbors to use when computing radii. Must be at least 1.
 
+    units (string):
+        Which unit the entropy output has.
+        Acceptable strings include:
+            'nats' : base e
+            'bits' : base 2
+
     """
     
     # Get number of samples and dimensionality
