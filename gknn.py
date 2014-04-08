@@ -93,14 +93,14 @@ def getball(string):
     """
 
     # Euclidean ball
-    if string.upper() == 'L2' or string.upper() == 'EUCLIDEAN':
+    if string.upper() == 'L2' or string.upper() == 'EUCLIDEAN' or string == '2':
         return 2
 
     # l1 ball
-    elif string.upper() == 'L1' or string.upper() == 'MANHATTAN' or string.upper() == 'TAXICAB':
+    elif string.upper() == 'L1' or string.upper() == 'MANHATTAN' or string.upper() == 'TAXICAB' or string == '1':
         return 1
 
-    elif string.upper() == 'LINF' or string.upper() == 'CHEBYSHEV':
+    elif string.upper() == 'LINF' or string.upper() == 'CHEBYSHEV' or string == 'inf':
         return float('inf')
 
     # ball not found
